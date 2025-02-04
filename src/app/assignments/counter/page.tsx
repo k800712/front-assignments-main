@@ -56,25 +56,25 @@ export default function Assignments3() {
             </div>
 
             {/* 증가/감소/리셋 버튼 */}
-            <div className="flex justify-center gap-4 mb-6">
-                {/* +1 증가 */}
+            <div className="flex justify-center gap-8 mb-6"> {/* 간격도 조절 */}
+                {/* +1 증가 버튼 */}
                 <button
                     onClick={increment}
-                    className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
+                    className="px-8 py-4 text-xl bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
                 >
                     + 1 증가
                 </button>
-                {/* -1 감소 */}
+                {/* -1 감소 버튼 */}
                 <button
                     onClick={decrement}
-                    className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition"
+                    className="px-8 py-4 text-xl bg-red-500 text-white rounded-lg hover:bg-red-600 transition"
                 >
                     - 1 감소
                 </button>
-                {/* 리셋 */}
+                {/* 리셋 버튼 */}
                 <button
                     onClick={reset}
-                    className="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition"
+                    className="px-8 py-4 text-xl bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition"
                 >
                     리셋
                 </button>
