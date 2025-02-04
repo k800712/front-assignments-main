@@ -5,10 +5,36 @@ import Header from "@/components/header";
 
 export default function Assignments3() {
     const [count, setCount] = useState(0);
+    const [color, setColor] = useState("text-gray-700"); // 기본 색상
 
-    const increment = () => setCount(count + 1); // +1 증가
-    const decrement = () => setCount(count - 1); // -1 감소
-    const reset = () => setCount(0); // 리셋: 값 0으로 초기화
+    const increment = () => {
+        triggerColorChange("up");
+        setCount(count + 1); // +1 증가
+    };
+
+    const decrement = () => {
+        if (count > 0) {
+            triggerColorChange("down");
+            setCount(count - 1); // -1 감소
+        }
+    };
+
+    const reset = () => {
+        setColor("text-gray-700");
+        setCount(0); // 리셋
+    };
+
+    // 색상 변화를 트리거
+    const triggerColorChange = (direction: "up" | "down") => {
+        if (direction === "up") {
+            setColor("text-green-500"); // 증가 시 녹색
+        } else if (direction === "down") {
+            setColor("text-red-500"); // 감소 시 빨간색
+        }
+
+        // 500ms 후 기본 색상으로 복귀
+        setTimeout(() => setColor("text-gray-700"), 500);
+    };
 
     return (
         <div className="w-full h-full flex flex-col">
@@ -24,7 +50,7 @@ export default function Assignments3() {
 
             {/* 카운트 숫자 */}
             <div className="flex-1 flex items-center justify-center">
-                <div className="text-4xl md:text-6xl font-extrabold">
+                <div className={`text-6xl md:text-8xl lg:text-9xl font-extrabold transition-colors duration-500 ${color}`}>
                     {count}
                 </div>
             </div>
