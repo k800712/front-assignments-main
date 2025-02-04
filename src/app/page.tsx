@@ -14,6 +14,12 @@ const assignments = [
         title: "프로필 카드 만들기",
         description: "object 형식의 데이터를 만들고 그것을 이용해서 프로필 카드 만들기",
     },
+    {
+        order: 3,
+        path: "counter",
+        title: "counter 만들기",
+        description: "object 형식의 데이터를 만들고 그것을 이용해서 counter 카드 만들기",
+    },
 ];
 
 export default function Home() {

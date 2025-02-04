@@ -45,27 +45,31 @@ export default function Assignment1() {
         <Header title={"상품목록 만들기"} hasBack={true} />
         <div className="w-full h-full flex flex-col overflow-y-auto py-5 px-5 gap-5 scrollbar-hide">
           {/* 반응형 Grid Layout */}
-          <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             {products.map((product, index) => (
                 <div
                     key={index}
-                    className="rounded-md bg-white border p-3 gap-1 flex flex-col"
+                    className="rounded-md bg-white border p-3 gap-2 flex flex-col transition-all hover:shadow-lg hover:scale-105"
                 >
                   {/* 상품 이미지 */}
-                  <div className="w-full aspect-square rounded-md">
+                  <div className="w-full aspect-square rounded-md overflow-hidden">
                     {product.imageSrc ? (
                         <img
                             src={product.imageSrc}
                             alt={product.title}
-                            className="rounded-md w-full aspect-square"
+                            className="rounded-md w-full h-full object-cover"
                         />
                     ) : (
                         <BlankImage />
                     )}
                   </div>
                   {/* 상품 정보 */}
-                  <div className="h-12 max-h-12 overflow-hidden">{product.title}</div>
-                  <div className="font-bold">{product.price.toLocaleString()}원</div>
+                  <div className="h-12 max-h-12 overflow-hidden text-ellipsis whitespace-nowrap">
+                    {product.title}
+                  </div>
+                  <div className="font-bold text-gray-800">
+                    {product.price.toLocaleString()}원
+                  </div>
                 </div>
             ))}
           </div>
