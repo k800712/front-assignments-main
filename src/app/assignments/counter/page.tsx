@@ -7,21 +7,38 @@ export default function Assignments3() {
     const [count, setCount] = useState(0);
     const [color, setColor] = useState("text-gray-700"); // 기본 색상
 
+    // +1 증가
     const increment = () => {
         triggerColorChange("up");
-        setCount(count + 1); // +1 증가
+        setCount(count + 1);
     };
 
+    // -1 감소
     const decrement = () => {
         if (count > 0) {
             triggerColorChange("down");
-            setCount(count - 1); // -1 감소
+            setCount(count - 1);
         }
     };
 
+    // +10 증가
+    const incrementByTen = () => {
+        triggerColorChange("up");
+        setCount(count + 10);
+    };
+
+    // -10 감소
+    const decrementByTen = () => {
+        if (count >= 10) {
+            triggerColorChange("down");
+            setCount(count - 10);
+        }
+    };
+
+    // 리셋
     const reset = () => {
         setColor("text-gray-700");
-        setCount(0); // 리셋
+        setCount(0);
     };
 
     // 색상 변화를 트리거
@@ -55,26 +72,50 @@ export default function Assignments3() {
                 </div>
             </div>
 
-            {/* 증가/감소/리셋 버튼 */}
-            <div className="flex justify-center gap-8 mb-6"> {/* 간격도 조절 */}
-                {/* +1 증가 버튼 */}
-                <button
-                    onClick={increment}
-                    className="px-8 py-4 text-xl bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
-                >
-                    + 1 증가
-                </button>
-                {/* -1 감소 버튼 */}
-                <button
-                    onClick={decrement}
-                    className="px-8 py-4 text-xl bg-red-500 text-white rounded-lg hover:bg-red-600 transition"
-                >
-                    - 1 감소
-                </button>
-                {/* 리셋 버튼 */}
+            {/* 버튼 배치 */}
+            <div className="flex flex-nowrap justify-center items-center gap-8 mb-6">
+                {/* 왼쪽 컬럼 (감소 버튼들) */}
+                <div className="flex flex-col gap-4">
+                    {/* -1 감소 버튼 */}
+                    <button
+                        onClick={decrement}
+                        className="px-6 py-3 lg:px-8 lg:py-4 text-sm lg:text-xl bg-red-500 text-white rounded-lg hover:bg-red-600 transition"
+                    >
+                        - 1 감소
+                    </button>
+                    {/* -10 감소 버튼 */}
+                    <button
+                        onClick={decrementByTen}
+                        className="px-6 py-3 lg:px-8 lg:py-4 text-sm lg:text-xl bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition"
+                    >
+                        - 10 감소
+                    </button>
+                </div>
+
+                {/* 오른쪽 컬럼 (증가 버튼들) */}
+                <div className="flex flex-col gap-4">
+                    {/* +1 증가 버튼 */}
+                    <button
+                        onClick={increment}
+                        className="px-6 py-3 lg:px-8 lg:py-4 text-sm lg:text-xl bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
+                    >
+                        + 1 증가
+                    </button>
+                    {/* +10 증가 버튼 */}
+                    <button
+                        onClick={incrementByTen}
+                        className="px-6 py-3 lg:px-8 lg:py-4 text-sm lg:text-xl bg-green-500 text-white rounded-lg hover:bg-green-600 transition"
+                    >
+                        + 10 증가
+                    </button>
+                </div>
+            </div>
+
+            {/* 리셋 버튼 */}
+            <div className="flex justify-center">
                 <button
                     onClick={reset}
-                    className="px-8 py-4 text-xl bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition"
+                    className="px-6 py-3 lg:px-8 lg:py-4 text-sm lg:text-xl bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition"
                 >
                     리셋
                 </button>
