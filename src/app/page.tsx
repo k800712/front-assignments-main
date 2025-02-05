@@ -20,6 +20,12 @@ const assignments = [
         title: "counter 만들기",
         description: "object 형식의 데이터를 만들고 그것을 이용해서 counter 카드 만들기",
     },
+    {
+        order: 4,
+        path: "posts",
+        title: "카페 게시글 목록",
+        description: "게시글 목록 clone 하기",
+    },
 ];
 
 export default function Home() {
