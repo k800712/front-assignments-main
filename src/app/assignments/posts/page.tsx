@@ -100,7 +100,27 @@ export default function Page() {
 
     return (
         <div style={{ padding: '16px' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem' /* 글자 크기 조정 */ }}>
+            {/* 메인화면으로 돌아가는 버튼 */}
+            <div style={{ marginBottom: '16px' }}>
+                <Link href="/">
+                    <button
+                        style={{
+                            padding: '8px 16px',
+                            backgroundColor: '#0070f3',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '4px',
+                            cursor: 'pointer',
+                            fontSize: '0.85rem'
+                        }}
+                    >
+                        메인화면으로
+                    </button>
+                </Link>
+            </div>
+
+            {/* 게시글 테이블 */}
+            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem' }}>
                 <thead>
                 <tr style={{ borderBottom: '1px solid #ddd', fontSize: '0.85rem' }}>
                     <th style={{ padding: '8px', textAlign: 'left' }}>제목</th>
@@ -146,15 +166,15 @@ export default function Page() {
                             </Link>
                         </td>
                         <td style={{ padding: '8px', fontSize: '0.85rem' }}>
-                <span style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '4px',
-                    fontSize: '0.85rem' /* 작성자 글자 크기 */
-                }}>
-                  {post.writer}
-                    <span style={{ color: 'green', fontSize: '0.85rem' }}>✓</span>
-                </span>
+                            <span style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '4px',
+                                fontSize: '0.85rem'
+                            }}>
+                                {post.writer}
+                                <span style={{ color: 'green', fontSize: '0.85rem' }}>✓</span>
+                            </span>
                         </td>
                         <td style={{ padding: '8px', fontSize: '0.85rem' }}>{post.createdAt}</td>
                         <td style={{ padding: '8px', fontSize: '0.85rem' }}>{post.viewCount}</td>
