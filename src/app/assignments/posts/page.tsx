@@ -1,4 +1,10 @@
-import Link from 'next/link';
+"use client";
+
+import React from "react";
+import HeaderComponent from "@/components/header";
+import Link from "next/link";
+import Header from "@/components/header";
+
 
 export default function Page() {
     const posts = [
@@ -99,85 +105,72 @@ export default function Page() {
     ];
 
     return (
-        <div style={{ padding: '16px' }}>
-            {/* 메인화면으로 돌아가는 버튼 */}
-            <div style={{ marginBottom: '16px' }}>
-                <Link href="/">
-                    <button
-                        style={{
-                            padding: '8px 16px',
-                            backgroundColor: '#0070f3',
-                            color: 'white',
-                            border: 'none',
-                            borderRadius: '4px',
-                            cursor: 'pointer',
-                            fontSize: '0.85rem'
-                        }}
-                    >
-                        메인화면으로
-                    </button>
-                </Link>
-            </div>
+        <div style={{ padding: "16px" }}>
+            {/* 상단 Header 컴포넌트 */}
+            <Header title="카페 게시글 목록" hasBack={true} />
 
             {/* 게시글 테이블 */}
-            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem' }}>
+            <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.9rem" }}>
                 <thead>
-                <tr style={{ borderBottom: '1px solid #ddd', fontSize: '0.85rem' }}>
-                    <th style={{ padding: '8px', textAlign: 'left' }}>제목</th>
-                    <th style={{ padding: '8px', textAlign: 'left' }}>작성자</th>
-                    <th style={{ padding: '8px', textAlign: 'left' }}>작성일</th>
-                    <th style={{ padding: '8px', textAlign: 'left' }}>조회</th>
+                <tr style={{ borderBottom: "1px solid #ddd", fontSize: "0.85rem" }}>
+                    <th style={{ padding: "8px", textAlign: "left" }}>제목</th>
+                    <th style={{ padding: "8px", textAlign: "left" }}>작성자</th>
+                    <th style={{ padding: "8px", textAlign: "left" }}>작성일</th>
+                    <th style={{ padding: "8px", textAlign: "left" }}>조회</th>
                 </tr>
                 </thead>
                 <tbody>
                 {posts.map((post) => (
-                    <tr key={post.id} style={{ borderBottom: '1px solid #eee' }}>
-                        <td style={{ padding: '8px', fontSize: '0.9rem' }}>
+                    <tr key={post.id} style={{ borderBottom: "1px solid #eee" }}>
+                        <td style={{ padding: "8px", fontSize: "0.9rem" }}>
                             <Link
                                 href={`/posts/${post.id}`}
                                 style={{
-                                    textDecoration: 'none',
-                                    color: 'inherit',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '4px',
-                                    fontSize: '0.85rem' /* 링크 글자 크기 조정 */
+                                    textDecoration: "none",
+                                    color: "inherit",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: "4px",
+                                    fontSize: "0.85rem",
                                 }}
                             >
                                 {post.title}
                                 {post.hasImage && (
-                                    <span style={{
-                                        width: '14px', /* 아이콘 크기 조정 */
-                                        height: '14px',
-                                        backgroundImage: 'url(/image-icon.png)',
-                                        display: 'inline-block'
-                                    }}></span>
+                                    <span
+                                        style={{
+                                            width: "14px",
+                                            height: "14px",
+                                            backgroundImage: "url(/image-icon.png)",
+                                            display: "inline-block",
+                                        }}
+                                    ></span>
                                 )}
                                 {post.isNew && (
-                                    <span style={{
-                                        backgroundColor: '#ff0000',
-                                        color: 'white',
-                                        padding: '1px 4px',
-                                        borderRadius: '2px',
-                                        fontSize: '0.8rem' /* "N" 크기 줄이기 */
-                                    }}>N</span>
+                                    <span
+                                        style={{
+                                            backgroundColor: "#ff0000",
+                                            color: "white",
+                                            padding: "1px 4px",
+                                            borderRadius: "2px",
+                                            fontSize: "0.7rem",
+                                        }}
+                                    >
+                                            N
+                                        </span>
                                 )}
-                                <span style={{ color: '#ff0000', fontSize: '0.85rem' }}>[{post.commentCount}]</span>
+                                <span style={{ color: "#ff0000", fontSize: "0.85rem" }}>
+                                        [{post.commentCount}]
+                                    </span>
                             </Link>
                         </td>
-                        <td style={{ padding: '8px', fontSize: '0.85rem' }}>
-                            <span style={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '4px',
-                                fontSize: '0.85rem'
-                            }}>
-                                {post.writer}
-                                <span style={{ color: 'green', fontSize: '0.85rem' }}>✓</span>
-                            </span>
+                        <td style={{ padding: "8px", fontSize: "0.85rem" }}>
+                                <span style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+                                    {post.writer}
+                                    <span style={{ color: "green", fontSize: "0.85rem" }}>✓</span>
+                                </span>
                         </td>
-                        <td style={{ padding: '8px', fontSize: '0.85rem' }}>{post.createdAt}</td>
-                        <td style={{ padding: '8px', fontSize: '0.85rem' }}>{post.viewCount}</td>
+                        <td style={{ padding: "8px", fontSize: "0.85rem" }}>{post.createdAt}</td>
+                        <td style={{ padding: "8px", fontSize: "0.85rem" }}>{post.viewCount}</td>
                     </tr>
                 ))}
                 </tbody>
