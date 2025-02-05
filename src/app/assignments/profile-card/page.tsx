@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Header from "@/components/header";
 import Image from "next/image";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai"; // 좋아요 하트 아이콘
 
 interface Profile {
     imageSrc: string;
@@ -79,24 +80,19 @@ interface ProfileCardProps {
 function ProfileCard({ profile }: ProfileCardProps) {
     const { imageSrc, name, age, nationality, height, weight, job, famousLines } = profile;
 
-    // 각각의 카드마다 좋아요 상태를 독립적으로 관리
-    const [likes, setLikes] = useState(0); // 좋아요 횟수
-    const [isLiked, setIsLiked] = useState(false); // 좋아요 여부
+    // 좋아요 상태 관리
+    const [likes, setLikes] = useState(0);
+    const [isLiked, setIsLiked] = useState(false);
 
     // 좋아요 버튼 클릭 핸들러
     const handleLikeClick = () => {
         if (isLiked) {
-            setLikes(likes - 1); // 좋아요 취소 시 감소
+            setLikes(likes - 1);
         } else {
-            setLikes(likes + 1); // 좋아요 누를 시 증가
+            setLikes(likes + 1);
         }
-        setIsLiked(!isLiked); // 좋아요 상태 토글
+        setIsLiked(!isLiked);
     };
-
-    // 버튼 스타일링
-    const likeButtonStyle = isLiked
-        ? "bg-blue-500 text-white" // 활성화 상태
-        : "bg-gray-200 text-gray-700"; // 비활성화 상태
 
     return (
         <div className="p-5 bg-white border rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300">
@@ -110,7 +106,7 @@ function ProfileCard({ profile }: ProfileCardProps) {
                     alt={name}
                 />
             </div>
-            {/* 정보를 보여주는 콘텐츠 */}
+            {/* 정보 */}
             <div className="w-full h-full flex flex-col gap-4 text-center">
                 <div>
                     <p className="text-xs text-stone-400">이름</p>
@@ -147,15 +143,31 @@ function ProfileCard({ profile }: ProfileCardProps) {
                         ))}
                     </div>
                 </div>
+
                 {/* 좋아요 버튼 */}
                 <div className="flex justify-center items-center flex-col gap-2 mt-4">
                     <button
-                        className={`px-4 py-2 rounded-lg transition-all duration-300 ${likeButtonStyle}`}
+                        className="relative flex items-center justify-center text-red-500 text-3xl transition-transform duration-300 focus:outline-none"
                         onClick={handleLikeClick}
                     >
-                        {isLiked ? "좋아요 취소" : "좋아요"}
+                        {/* 좋아요 하트 아이콘 */}
+                        {isLiked ? (
+                            <AiFillHeart className="animate-ping-once scale-125 transition-transform duration-300" />
+                        ) : (
+                            <AiOutlineHeart className="hover:scale-110" />
+                        )}
+
+                        {/* 하트 이펙트 */}
+                        <span
+                            className={`absolute w-6 h-6 bg-pink-400 rounded-full opacity-50 animate-pop ${
+                                isLiked ? "block" : "hidden"
+                            }`}
+                        />
                     </button>
-                    <p className="text-sm text-gray-600">좋아요: {likes}회</p>
+                    {/* 좋아요 횟수 */}
+                    <p className="text-sm text-gray-600">
+                        좋아요: {likes.toLocaleString("ko-KR")}회
+                    </p>
                 </div>
             </div>
         </div>
